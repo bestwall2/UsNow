@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>انضم إلى مجموعة واتساب - فرص عمل</title>
+
+  <style>
+    :root{
+      --bg1:#e6f4ea;
+      --bg2:#cde9dc;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --whatsapp:#25D366;
+      --accent:#0b8450;
+      --radius:20px;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Cairo", "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:#111827;
+      direction:rtl;
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      box-sizing:border-box;
+    }
+
+    .card{
+      width:100%;
+      max-width:920px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), var(--card));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:40px;
+      display:flex;
+      gap:28px;
+      align-items:center;
+      box-sizing:border-box;
+      overflow:hidden;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(30px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    .left {
+      flex:1 1 480px;
+      min-width:240px;
+    }
+
+    .logo {
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:16px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .logo .icon{
+      width:60px;
+      height:60px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--whatsapp),var(--accent));
+      display:inline-grid;
+      place-items:center;
+      box-shadow: 0 6px 18px rgba(37,211,102,0.2);
+      color:#fff;
+      font-weight:700;
+      font-size:28px;
+    }
+
+    h1{
+      margin:0 0 8px 0;
+      font-size:30px;
+      line-height:1.2;
+      color:var(--accent);
+    }
+
+    p.lead{
+      margin:0 0 24px 0;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .features{
+      background:rgba(37,211,102,0.08);
+      border-radius:12px;
+      padding:14px 18px;
+      margin-bottom:24px;
+      line-height:1.7;
+      color:#1b1c1b;
+      font-size:15px;
+    }
+
+    .features i{
+      color:var(--accent);
+      margin-left:6px;
+    }
+
+    /* زر واتساب */
+    .btn{
+      width:100%;
+      max-width:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      background:linear-gradient(90deg,var(--whatsapp),#1ebe57);
+      color:#fff;
+      border:none;
+      padding:18px 24px;
+      border-radius:14px;
+      font-size:20px;
+      font-weight:600;
+      text-decoration:none;
+      cursor:pointer;
+      box-shadow: 0 10px 25px rgba(37,211,102,0.18);
+      transition:transform .15s ease, box-shadow .15s ease;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 rgba(37,211,102,0.2); }
+      50% { box-shadow: 0 0 20px rgba(37,211,102,0.3); }
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+      box-shadow: 0 14px 32px rgba(37,211,102,0.25);
+    }
+
+    .btn:active{ transform:scale(.98); }
+
+    .btn img{
+      width:26px;
+      height:100%;
+      filter: brightness(0) invert(1);
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin {
+      0%,100% { transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+    }
+
+    /* القسم الأيمن */
+    .right{
+      width:300px;
+      background: linear-gradient(180deg, rgba(11,132,80,0.05), rgba(11,132,80,0.02));
+      border-radius:14px;
+      padding:22px;
+      text-align:center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+
+    .right p{
+      margin:0 0 10px 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .small{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    footer.note{
+      margin-top:20px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    @media (max-width:720px){
+      .card{ flex-direction:column; padding:24px; gap:20px; }
+      .right{ width:100%; }
+      .btn{ max-width:100%; font-size:18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="region" aria-label="دعوة مجموعة واتساب فرص عمل">
+      <div class="left">
+        <div class="logo" aria-hidden="true">
+          <div class="icon">و</div>
+          <div>
+            <div style="font-weight:600">مجموعة واتساب</div>
+            <div style="font-size:13px;color:var(--muted)">فرص عمل - مشاريع - مهارات</div>
+          </div>
+        </div>
+
+        <h1>انضم إلى مجموعتنا وابدأ فرصتك القادمة!</h1>
+        <p class="lead">كن ضمن شبكة من الشباب الطموح الباحث عن فرص عمل، تدريب، شراكات، ومهارات جديدة.  
+        المجموعة مفتوحة للجميع من المغرب والعالم العربي.</p>
+
+        <div class="features">
+          <p><i>💼</i> عروض عمل يومية في مجالات متنوعة</p>
+          <p><i>📱</i> نصائح للنجاح في المقابلات والسيرة الذاتية</p>
+          <p><i>🤝</i> تواصل مباشر مع أصحاب الشركات والمستقلين</p>
+        </div>
+
+        <button id="joinBtn" class="btn" aria-label="انضم إلى مجموعة واتساب">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب" />
+          انضم الآن إلى المجموعة
+        </button>
+
+        <footer class="note">في حال لم يُفتح التطبيق، سيتم تحويلك تلقائيًا إلى صفحة الدعوة عبر الويب.</footer>
+      </div>
+
+      <aside class="right" aria-hidden="true">
+        <p><strong>رمز المجموعة</strong></p>
+        <div id="groupCodeDisplay" style="font-size:18px;font-weight:600;margin-bottom:8px;color:var(--accent)">GDua6Q2BMHoHjgMudafBMI</div>
+        <p class="small">سيتم فتح الرابط مباشرة في تطبيق واتساب إذا كان مثبتًا. أو من خلال المتصفح على الأجهزة المكتبية.</p>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const groupCode = params.get('groupid') || 'There is no groupid Please add one. \n EXAMPLE:www.test.ahmed/?groupid=[ABCD]';
+
+    const webUrl = 'https://chat.whatsapp.com/' + groupCode;
+    const intentUrl = 'intent://chat.whatsapp.com/' + groupCode + '#Intent;package=com.whatsapp;scheme=https;end';
+    const joinBtn = document.getElementById('joinBtn');
+    const codeEl = document.getElementById('groupCodeDisplay');
+    codeEl.textContent = groupCode;
+
+    function isiOS() { return /iPad|iPhone|iPod/.test(navigator.userAgent); }
+    function isAndroid() { return /Android/.test(navigator.userAgent); }
+
+    joinBtn.addEventListener('click', function () {
+      if (isAndroid()) {
+        window.location.href = intentUrl;
+        setTimeout(() => window.open(webUrl, '_blank'), 1200);
+      } else if (isiOS()) {
+        window.location.href = webUrl;
+      } else {
+        window.open(webUrl, '_blank', 'noopener,noreferrer');
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

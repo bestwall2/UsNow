@@ -238,7 +238,7 @@
   <script>
   (function(){
     const params = new URLSearchParams(window.location.search);
-    const groupCode = params.get('groupid') || 'There is no groupid Please add one. \n EXAMPLE:www.test.ahmed/?groupid=[ABCD]';
+    const groupCode = params.get('groupid') || 'أنت غير مسموح لك بإستعمال الرابط';
 
     const webUrl = 'https://chat.whatsapp.com/' + groupCode;
     const intentUrl = 'intent://chat.whatsapp.com/' + groupCode + '#Intent;package=com.whatsapp;scheme=https;end';

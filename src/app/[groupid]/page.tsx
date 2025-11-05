@@ -1,7 +1,9 @@
 import { Metadata } from "next";
 
 async function getGroupData(groupid: string) {
-  const res = await fetch("https://sheetdb.io/api/v1/b1trlzrz5n1uu");
+  const res = await fetch("https://sheetdb.io/api/v1/b1trlzrz5n1uu", {
+    cache: "no-store",
+  });
   const data = await res.json();
   const group = data.find((g: any) => g.Codes === groupid);
   return group;

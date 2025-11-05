@@ -19,6 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
+      <meta name="google-site-verification" content="YSX0QBTUpg092ujQcCx9pcyX5TXf-tAwNvTWRMNN-pQ" />
       <body className={cairo.className}>{children}</body>
     </html>
   );

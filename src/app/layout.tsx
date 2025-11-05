@@ -7,6 +7,9 @@ const cairo = Cairo({ subsets: ["arabic"] });
 export const metadata: Metadata = {
   title: "انضم إلى مجموعة واتساب - فرص عمل",
   description: "انضم إلى مجموعتنا وابدأ فرصتك القادمة!",
+  verification: {
+    google: "3igLxz-ijDzW7nzQYud0yPO2q5egIr01nfQGYm8FQFQ",
+  },
 };
 
 export default function RootLayout({

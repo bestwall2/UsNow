@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>انضم إلى مجموعة واتساب - فرص عمل</title>
 
+  <!-- Basic inline CSP (مفيد لكن ليس بديلاً عن الهيدر على الخادم) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https: data:; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https:; frame-ancestors 'none';">
+
   <style>
     :root {
       --bg1: #e6f4ea;
@@ -31,20 +35,22 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:20px;
+      padding:32px;
       box-sizing:border-box;
     }
 
     .card{
       width:100%;
-      max-width:900px;
-      background:var(--card);
+      max-width:920px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.95),var(--card));
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       padding:40px;
       display:flex;
-      flex-wrap:wrap;
-      gap:32px;
+      gap:28px;
+      align-items:center;
+      box-sizing:border-box;
+      overflow:hidden;
       animation:fadeInUp 0.8s ease;
     }
 
@@ -53,16 +59,19 @@
       to { opacity:1; transform:translateY(0); }
     }
 
-    .left{
-      flex:1 1 500px;
-      min-width:260px;
-    }
+    .left { flex:1 1 480px; min-width:240px; }
 
     .logo{
-      display:flex;
+      display:inline-flex;
       align-items:center;
       gap:14px;
       margin-bottom:16px;
+      animation:float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-4px);}
     }
 
     .logo .icon{
@@ -70,7 +79,7 @@
       height:60px;
       border-radius:16px;
       background:linear-gradient(135deg,var(--whatsapp),var(--accent));
-      display:grid;
+      display:inline-grid;
       place-items:center;
       box-shadow:0 6px 18px rgba(37,211,102,0.2);
       color:#fff;
@@ -80,7 +89,7 @@
 
     h1{
       margin:0 0 8px 0;
-      font-size:28px;
+      font-size:30px;
       color:var(--accent);
     }
 
@@ -101,29 +110,36 @@
     }
 
     .btn{
+      width:100%;
+      max-width:420px;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      width:100%;
+      gap:12px;
       background:linear-gradient(90deg,var(--whatsapp),#1ebe57);
       color:#fff;
       border:none;
-      padding:16px 20px;
+      padding:18px 24px;
       border-radius:14px;
-      font-size:18px;
+      font-size:20px;
       font-weight:600;
       text-decoration:none;
       cursor:pointer;
       box-shadow:0 10px 25px rgba(37,211,102,0.18);
       transition:transform .15s ease, box-shadow .15s ease;
+      animation:pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%,100% { box-shadow:0 0 0 rgba(37,211,102,0.2); }
+      50% { box-shadow:0 0 20px rgba(37,211,102,0.3); }
     }
 
     .btn:hover{transform:translateY(-3px);}
-    .btn img{width:24px;filter:brightness(0) invert(1);}
+    .btn img{width:26px;filter:brightness(0) invert(1);}
 
     .right{
-      flex:0 0 260px;
+      width:300px;
       background:linear-gradient(180deg,rgba(11,132,80,0.05),rgba(11,132,80,0.02));
       border-radius:14px;
       padding:22px;
@@ -131,15 +147,15 @@
     }
 
     .right p{margin:0 0 10px 0;color:var(--muted);font-size:14px;}
-    footer.note{margin-top:20px;font-size:13px;color:var(--muted);text-align:center;}
+    footer.note{margin-top:20px;font-size:13px;color:var(--muted);}
 
-    @media(max-width:768px){
-      .card{flex-direction:column;align-items:center;padding:24px;}
-      .left,.right{width:100%;text-align:center;}
-      h1{font-size:24px;}
-      .btn{font-size:17px;}
+    @media(max-width:720px){
+      .card{flex-direction:column;padding:24px;gap:20px;}
+      .right{width:100%;}
+      .btn{max-width:100%;font-size:18px;}
     }
 
+    /* unavailable page */
     .unavailable{
       text-align:center;
       padding:40px;
@@ -156,8 +172,7 @@
   <div class="wrap" id="mainWrap">
     <div class="card" id="mainCard" style="display:none;">
       <div class="left">
-        <div class="logo">
-          <div class="icon">و</div>
+        <div class="logo"><div class="icon">و</div>
           <div>
             <div style="font-weight:600">مجموعة واتساب</div>
             <div style="font-size:13px;color:var(--muted)">فرص عمل - مشاريع - مهارات</div>
@@ -166,14 +181,13 @@
 
         <h1>انضم إلى مجموعتنا وابدأ فرصتك القادمة!</h1>
         <div class="features">
-          <p>تعرّف على كيفية العمل في التجارة الإلكترونية من المنزل، وانضم إلى المجموعة لشرح كامل.</p>
-          <p>نقدّم فرصًا حقيقية ومجانية للتدريب على التجارة الإلكترونية.</p>
+          <p>للتعرف على نوعية العمل معنا في التجارة الإلكترونية من المنزل، اضغط على متابعة لدخول المجموعة الخاصة بالشرح.</p>
         </div>
 
-        <a id="joinLink" href="#" rel="noopener noreferrer" class="btn">
+        <button id="joinBtn" class="btn" aria-live="polite" aria-label="انضم الآن">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب"/>
           انضم الآن إلى المجموعة
-        </a>
+        </button>
 
         <footer class="note">في حال لم يُفتح التطبيق، سيتم تحويلك تلقائيًا إلى صفحة الدعوة عبر الويب.</footer>
       </div>
@@ -188,31 +202,51 @@
 
   <script>
   (async function(){
+    // === استخدم هنا الـ SheetDB API الذي أعطيتَه
     const apiUrl = "https://sheetdb.io/api/v1/b1trlzrz5n1uu";
     const params = new URLSearchParams(window.location.search);
     const groupid = params.get("groupid");
-    console.log("groupid:", groupid);
 
     try {
-      const res = await fetch(apiUrl);
+      const res = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if(!res.ok) throw new Error('Network response not ok');
       const data = await res.json();
 
-      // expecting data like: [{ "Codes":"ahmed", "UrlName":"ah", "ColorId":"#e22400" }]
-      const found = data.find(x => x.Codes === groupid);
+      // data متوقع أن يكون مصفوفة: [{ "Codes":"ahmed", "UrlName":"ah", "ColorId":"#e22400" }]
+      const found = Array.isArray(data) ? data.find(x => String(x.Codes) === String(groupid)) : null;
       if(!found) return showUnavailable();
 
-      // Dynamic theming
-      document.documentElement.style.setProperty("--whatsapp", found.ColorId);
-      document.documentElement.style.setProperty("--accent", found.ColorId);
-      document.title = "انضم إلى مجموعة - " + found.UrlName;
+      // Dynamic theming (يحافظ على تصميمك)
+      if(found.ColorId){
+        document.documentElement.style.setProperty("--whatsapp", found.ColorId);
+        document.documentElement.style.setProperty("--accent", found.ColorId);
+      }
+      document.title = "انضم إلى مجموعة - " + (found.UrlName || '');
 
-      const webUrl = "https://chat.whatsapp.com/" + groupid;
+      const webUrl = "https://chat.whatsapp.com/" + encodeURIComponent(groupid);
       document.getElementById("groupCodeDisplay").textContent = groupid;
-      document.getElementById("joinLink").href = webUrl;
       document.getElementById("mainCard").style.display = "flex";
 
+      // فتح الرابط بواسطة نقرة المستخدم (هذا يقلل من بعض أنواع تحذيرات التحميل التلقائي)
+      document.getElementById("joinBtn").addEventListener("click", (ev)=>{
+        // افتح في تبويب جديد بطريقة آمنة
+        window.open(webUrl, '_blank', 'noopener,noreferrer');
+      });
+
+      // تحسين URL الظاهر في المتصفح (تجميل المسار)
+      const safePath = (found.UrlName || '').toString().toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9\-ء-ي]+/g,'');
+      if(safePath && !window.location.pathname.includes(safePath)){
+        history.replaceState({}, "", `/${safePath}?groupid=${encodeURIComponent(groupid)}`);
+      }
+
     } catch(e) {
-      console.error("Error:", e);
+      console.error("Fetch error:", e);
       showUnavailable();
     }
 

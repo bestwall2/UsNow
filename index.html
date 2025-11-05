@@ -178,12 +178,13 @@
         <h1>انضم إلى مجموعتنا وابدأ فرصتك القادمة!</h1>
         <div class="features">
           <p>للتعرف على نوعية العمل معنا في التجارة الإلكترونية من المنزل، اضغط على متابعة لدخول المجموعة الخاصة بالشرح.</p>
+          <p>نحن نقدم فرصًا للعمل من المنزل في مجال التجارة الإلكترونية. انضم إلى مجموعتنا على واتساب للحصول على آخر التحديثات والنصائح.</p>
         </div>
 
-        <button id="joinBtn" class="btn">
+        <a id="joinLink" href="#" rel="noopener noreferrer" class="btn">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب"/>
           انضم الآن إلى المجموعة
-        </button>
+        </a>
 
         <footer class="note">في حال لم يُفتح التطبيق، سيتم تحويلك تلقائيًا إلى صفحة الدعوة عبر الويب.</footer>
       </div>
@@ -198,30 +199,37 @@
 
   <script>
   (async function(){
+    console.log("Script started");
     const apiUrl = "https://script.google.com/macros/s/AKfycbzfxNL3ZrnpwbgryyrRyvw-qpGwq7kd1TcdhMpvMoN_xaE7TJNK2uZaXQu6b33r_5e6/exec";
     const params = new URLSearchParams(window.location.search);
     const groupid = params.get("groupid");
+    console.log("groupid:", groupid);
 
     try {
+      console.log("Fetching data from", apiUrl);
       const res = await fetch(apiUrl);
       const data = await res.json();
+      console.log("Data fetched:", JSON.stringify(data));
       if(data.status !== "success") throw new Error("Bad response");
 
       const found = data.data.find(x => x.Codes === groupid);
-      if(!found) return showUnavailable();
+      console.log("Found:", found);
+      if(!found) {
+        console.log("Group ID not found, showing unavailable page.");
+        return showUnavailable();
+      }
 
       // Change theme color dynamically
+      console.log("Setting theme color to:", found.ColorId);
       document.documentElement.style.setProperty("--whatsapp", found.ColorId);
       document.documentElement.style.setProperty("--accent", found.ColorId);
       document.title = "انضم إلى مجموعة - " + found.UrlName;
 
       const webUrl = "https://chat.whatsapp.com/" + groupid;
       document.getElementById("groupCodeDisplay").textContent = groupid;
+      document.getElementById("joinLink").href = webUrl;
+      console.log("Setting mainCard display to flex");
       document.getElementById("mainCard").style.display = "flex";
-
-      document.getElementById("joinBtn").addEventListener("click", ()=>{
-        window.location.href = webUrl;
-      });
 
       // Fix Google Safe URL issue by forcing https canonical path
       const meta = document.createElement("meta");
@@ -234,8 +242,10 @@
       if(!window.location.pathname.includes(safePath)){
         history.replaceState({}, "", `/${safePath}?groupid=${groupid}`);
       }
+      console.log("Script finished successfully");
 
     } catch(e) {
+      console.error("Error:", e);
       showUnavailable();
     }
 

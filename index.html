@@ -31,22 +31,20 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:32px;
+      padding:20px;
       box-sizing:border-box;
     }
 
     .card{
       width:100%;
-      max-width:920px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.95),var(--card));
+      max-width:900px;
+      background:var(--card);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       padding:40px;
       display:flex;
-      gap:28px;
-      align-items:center;
-      box-sizing:border-box;
-      overflow:hidden;
+      flex-wrap:wrap;
+      gap:32px;
       animation:fadeInUp 0.8s ease;
     }
 
@@ -55,19 +53,16 @@
       to { opacity:1; transform:translateY(0); }
     }
 
-    .left { flex:1 1 480px; min-width:240px; }
+    .left{
+      flex:1 1 500px;
+      min-width:260px;
+    }
 
     .logo{
-      display:inline-flex;
+      display:flex;
       align-items:center;
       gap:14px;
       margin-bottom:16px;
-      animation:float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%,100%{transform:translateY(0);}
-      50%{transform:translateY(-4px);}
     }
 
     .logo .icon{
@@ -75,7 +70,7 @@
       height:60px;
       border-radius:16px;
       background:linear-gradient(135deg,var(--whatsapp),var(--accent));
-      display:inline-grid;
+      display:grid;
       place-items:center;
       box-shadow:0 6px 18px rgba(37,211,102,0.2);
       color:#fff;
@@ -85,7 +80,7 @@
 
     h1{
       margin:0 0 8px 0;
-      font-size:30px;
+      font-size:28px;
       color:var(--accent);
     }
 
@@ -106,36 +101,29 @@
     }
 
     .btn{
-      width:100%;
-      max-width:420px;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:12px;
+      gap:10px;
+      width:100%;
       background:linear-gradient(90deg,var(--whatsapp),#1ebe57);
       color:#fff;
       border:none;
-      padding:18px 24px;
+      padding:16px 20px;
       border-radius:14px;
-      font-size:20px;
+      font-size:18px;
       font-weight:600;
       text-decoration:none;
       cursor:pointer;
       box-shadow:0 10px 25px rgba(37,211,102,0.18);
       transition:transform .15s ease, box-shadow .15s ease;
-      animation:pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%,100% { box-shadow:0 0 0 rgba(37,211,102,0.2); }
-      50% { box-shadow:0 0 20px rgba(37,211,102,0.3); }
     }
 
     .btn:hover{transform:translateY(-3px);}
-    .btn img{width:26px;filter:brightness(0) invert(1);}
+    .btn img{width:24px;filter:brightness(0) invert(1);}
 
     .right{
-      width:300px;
+      flex:0 0 260px;
       background:linear-gradient(180deg,rgba(11,132,80,0.05),rgba(11,132,80,0.02));
       border-radius:14px;
       padding:22px;
@@ -143,15 +131,15 @@
     }
 
     .right p{margin:0 0 10px 0;color:var(--muted);font-size:14px;}
-    footer.note{margin-top:20px;font-size:13px;color:var(--muted);}
+    footer.note{margin-top:20px;font-size:13px;color:var(--muted);text-align:center;}
 
-    @media(max-width:720px){
-      .card{flex-direction:column;padding:24px;gap:20px;}
-      .right{width:100%;}
-      .btn{max-width:100%;font-size:18px;}
+    @media(max-width:768px){
+      .card{flex-direction:column;align-items:center;padding:24px;}
+      .left,.right{width:100%;text-align:center;}
+      h1{font-size:24px;}
+      .btn{font-size:17px;}
     }
 
-    /* unavailable page */
     .unavailable{
       text-align:center;
       padding:40px;
@@ -168,7 +156,8 @@
   <div class="wrap" id="mainWrap">
     <div class="card" id="mainCard" style="display:none;">
       <div class="left">
-        <div class="logo"><div class="icon">و</div>
+        <div class="logo">
+          <div class="icon">و</div>
           <div>
             <div style="font-weight:600">مجموعة واتساب</div>
             <div style="font-size:13px;color:var(--muted)">فرص عمل - مشاريع - مهارات</div>
@@ -177,8 +166,8 @@
 
         <h1>انضم إلى مجموعتنا وابدأ فرصتك القادمة!</h1>
         <div class="features">
-          <p>للتعرف على نوعية العمل معنا في التجارة الإلكترونية من المنزل، اضغط على متابعة لدخول المجموعة الخاصة بالشرح.</p>
-          <p>نحن نقدم فرصًا للعمل من المنزل في مجال التجارة الإلكترونية. انضم إلى مجموعتنا على واتساب للحصول على آخر التحديثات والنصائح.</p>
+          <p>تعرّف على كيفية العمل في التجارة الإلكترونية من المنزل، وانضم إلى المجموعة لشرح كامل.</p>
+          <p>نقدّم فرصًا حقيقية ومجانية للتدريب على التجارة الإلكترونية.</p>
         </div>
 
         <a id="joinLink" href="#" rel="noopener noreferrer" class="btn">
@@ -199,27 +188,20 @@
 
   <script>
   (async function(){
-    const apiUrl = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiFimUVa3_3UVqe2vwZMzpPkOOKTzbR8Z4FQUEyGg6AMNKpd5UPIbkty-YmhgSViGrdyVSU-WqblJ_VXvS-TEeflSPiK_3Db8b1kGX5MAUXKoHkHq5RYvBmQydN2sVXRKk9cxT-UznvrP9pPWb5S_XXL5f7rQVbZ95P5LlILOOpphrgg-zm1YFTZmFTEawMTc6FwmGqytSGp4oq7P0d0umIufbFf4U-ixyI6l4JFFregZ_sl4aQLXEJf2Bg5rXBGirtlhKboU7CCUaKnaiMdGWyk-4ieco7ik11GekM&lib=MpSXkmj9LuxY7Fljhye24KBPO_DWXebR_";
+    const apiUrl = "https://sheetdb.io/api/v1/b1trlzrz5n1uu";
     const params = new URLSearchParams(window.location.search);
     const groupid = params.get("groupid");
     console.log("groupid:", groupid);
 
     try {
-      console.log("Fetching data from", apiUrl);
       const res = await fetch(apiUrl);
       const data = await res.json();
-      console.log("Data fetched:", JSON.stringify(data));
-      if(data.status !== "success") throw new Error("Bad response");
 
-      const found = data.data.find(x => x.Codes === groupid);
-      console.log("Found:", found);
-      if(!found) {
-        console.log("Group ID not found, showing unavailable page.");
-        return showUnavailable();
-      }
+      // expecting data like: [{ "Codes":"ahmed", "UrlName":"ah", "ColorId":"#e22400" }]
+      const found = data.find(x => x.Codes === groupid);
+      if(!found) return showUnavailable();
 
-      // Change theme color dynamically
-      console.log("Setting theme color to:", found.ColorId);
+      // Dynamic theming
       document.documentElement.style.setProperty("--whatsapp", found.ColorId);
       document.documentElement.style.setProperty("--accent", found.ColorId);
       document.title = "انضم إلى مجموعة - " + found.UrlName;
@@ -227,21 +209,7 @@
       const webUrl = "https://chat.whatsapp.com/" + groupid;
       document.getElementById("groupCodeDisplay").textContent = groupid;
       document.getElementById("joinLink").href = webUrl;
-      console.log("Setting mainCard display to flex");
       document.getElementById("mainCard").style.display = "flex";
-
-      // Fix Google Safe URL issue by forcing https canonical path
-      const meta = document.createElement("meta");
-      meta.setAttribute("http-equiv","Content-Security-Policy");
-      meta.setAttribute("content","upgrade-insecure-requests");
-      document.head.appendChild(meta);
-
-      // Ensure safe URL structure for Vercel paths
-      const safePath = found.UrlName.toLowerCase().replace(/\s+/g,"-");
-      if(!window.location.pathname.includes(safePath)){
-        history.replaceState({}, "", `/${safePath}?groupid=${groupid}`);
-      }
-      console.log("Script finished successfully");
 
     } catch(e) {
       console.error("Error:", e);

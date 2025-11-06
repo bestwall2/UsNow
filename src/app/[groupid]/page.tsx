@@ -27,121 +27,113 @@ export default async function GroupPage({
   params: { groupid: string };
 }) {
   const group = await getGroupData(params.groupid);
+  const color = group?.ColorId || "#22c55e";
+  const webUrl = `https://chat.whatsapp.com/${params.groupid}`;
 
+  // === Error Page ===
   if (!group) {
     return (
-      <div
+      <main
         dir="rtl"
-        className="flex items-center justify-center min-h-screen bg-gray-50 p-6"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-6"
       >
-        <div className="p-8 text-center bg-white rounded-2xl shadow-lg max-w-md">
-          <h2 className="mb-4 text-2xl font-bold text-red-600">
-            الرابط غير متاح ⚠️
+        <div className="max-w-md bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-xl text-center border border-white/50">
+          <div className="text-5xl mb-3">⚠️</div>
+          <h2 className="text-2xl font-bold text-red-600 mb-2">
+            الرابط غير متاح
           </h2>
-          <p className="text-gray-600 mb-2">
+          <p className="text-gray-700 mb-3">
             عذرًا، هذا الرابط غير موجود أو انتهت صلاحيته.
           </p>
-          <p className="text-gray-500 text-sm">
-            يرجى التواصل مع الدعم للحصول على رابط جديد.
+          <p className="text-sm text-gray-500">
+            تواصل مع الدعم للحصول على رابط جديد.
           </p>
         </div>
-      </div>
+      </main>
     );
   }
 
-  const webUrl = "https://chat.whatsapp.com/" + params.groupid;
-  const color = group.ColorId || "#22c55e"; // fallback to green
-
+  // === Main Design ===
   return (
-    <div
+    <main
       dir="rtl"
-      className="flex items-center justify-center min-h-screen p-4 md:p-8"
+      className="min-h-screen flex flex-col items-center justify-center px-6 py-12"
       style={{
-        background: `linear-gradient(135deg, ${color}1A, ${color}33)`,
+        background: `linear-gradient(135deg, ${color}1A, ${color}40)`,
       }}
     >
-      <div className="w-full max-w-5xl bg-white rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] overflow-hidden md:flex md:gap-8">
-        {/* Left section */}
-        <div className="flex-1 p-8 md:p-10">
-          <div className="flex items-center gap-4 mb-6">
-            <div
-              className="grid w-16 h-16 text-3xl font-bold text-white rounded-2xl place-items-center shadow-sm"
-              style={{ backgroundColor: color }}
-            >
-              و
-            </div>
-            <div>
-              <div className="font-semibold text-gray-800">مجموعة واتساب</div>
-              <div className="text-sm text-gray-500">
-                فرص عمل • مشاريع • مهارات
-              </div>
-            </div>
-          </div>
-
-          <h1
-            className="mb-3 text-3xl md:text-4xl font-extrabold leading-snug"
-            style={{ color }}
-          >
-            انضم إلى مجموعتنا وابدأ فرصتك القادمة!
-          </h1>
-
-          <div
-            className="p-5 mb-8 rounded-2xl border-l-4 text-gray-700 leading-relaxed"
-            style={{
-              backgroundColor: `${color}0D`,
-              borderColor: color,
-            }}
-          >
-            <p>
-              تعرّف على كيفية العمل في التجارة الإلكترونية من المنزل، وانضم إلى
-              المجموعة لشرح كامل ومجاني خطوة بخطوة.
-            </p>
-            <p className="mt-2">
-              نقدّم فرصًا حقيقية للتدريب والتعاون في مشاريع رقمية.
-            </p>
-          </div>
-
-          <a
-            href={webUrl}
-            className="flex items-center justify-center w-full gap-3 px-6 py-4 text-lg font-semibold text-white rounded-2xl shadow-md transition-transform transform hover:scale-[1.02] active:scale-[0.98]"
-            style={{ backgroundColor: color }}
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-              alt="WhatsApp"
-              className="w-6 h-6 invert brightness-0"
-            />
-            انضم الآن إلى المجموعة
-          </a>
-
-          <p className="mt-3 text-xs text-center text-gray-500">
-            في حال لم يُفتح التطبيق، سيتم تحويلك تلقائيًا إلى صفحة الدعوة عبر
-            الويب.
-          </p>
+      {/* Card container */}
+      <div className="max-w-3xl w-full bg-white/70 backdrop-blur-2xl shadow-2xl rounded-3xl p-8 md:p-12 border border-white/50 text-center animate-fadeIn">
+        {/* Logo / Icon */}
+        <div
+          className="w-20 h-20 mx-auto mb-6 rounded-3xl flex items-center justify-center text-4xl font-bold text-white shadow-lg"
+          style={{ backgroundColor: color }}
+        >
+          و
         </div>
 
-        {/* Right section (aside) */}
-        <aside className="flex-shrink-0 p-8 md:w-72 bg-gray-50 rounded-t-3xl md:rounded-tr-none md:rounded-br-3xl text-center flex flex-col justify-center">
-          <p className="font-semibold text-gray-800">رمز المجموعة</p>
+        {/* Title */}
+        <h1
+          className="text-3xl md:text-4xl font-extrabold mb-4"
+          style={{ color }}
+        >
+          انضم إلى مجموعتنا على واتساب
+        </h1>
+
+        <p className="text-gray-700 mb-6 leading-relaxed max-w-lg mx-auto">
+          اكتشف فرص العمل والمشاريع وتعلم مهارات جديدة من خلال مجتمع نشط في مجال
+          التجارة الإلكترونية والعمل عن بعد. انضم إلينا لتبدأ رحلتك اليوم!
+        </p>
+
+        {/* CTA */}
+        <a
+          href={webUrl}
+          className="inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold text-white rounded-2xl shadow-md transition-transform transform hover:scale-[1.03] active:scale-[0.97]"
+          style={{ backgroundColor: color }}
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            alt="WhatsApp"
+            className="w-6 h-6 invert brightness-0"
+          />
+          انضم الآن إلى المجموعة
+        </a>
+
+        <p className="mt-3 text-sm text-gray-500">
+          سيتم تحويلك إلى تطبيق واتساب أو صفحة الدعوة على الويب تلقائيًا.
+        </p>
+
+        {/* Divider */}
+        <div className="my-8 border-t border-gray-200 w-2/3 mx-auto" />
+
+        {/* Group Info Section */}
+        <div className="flex flex-col items-center gap-3">
+          <p className="font-semibold text-gray-700">رمز المجموعة</p>
           <div
-            className="my-3 text-2xl font-bold tracking-wide"
+            className="text-2xl font-bold tracking-wide"
             style={{ color }}
           >
             {params.groupid}
           </div>
-          <p className="text-sm text-gray-500 mb-4">
-            سيتم فتح الرابط مباشرة في تطبيق واتساب إذا كان مثبتًا.
+          <p className="text-xs text-gray-500">
+            شارك هذا الرمز مع أصدقائك للانضمام مباشرة.
           </p>
 
-          <a
-            href={webUrl}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-xl shadow-sm transition hover:scale-105"
-            style={{ backgroundColor: color }}
-          >
-            فتح المجموعة
-          </a>
-        </aside>
+          {/* Small QR code for convenience */}
+          <img
+            src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(
+              webUrl
+            )}`}
+            alt="QR Code"
+            className="mt-4 rounded-xl border border-gray-200 shadow-sm"
+          />
+        </div>
       </div>
-    </div>
+
+      {/* Footer */}
+      <footer className="mt-10 text-xs text-gray-500 text-center">
+        © {new Date().getFullYear()} مجموعات واتساب | جميع الحقوق محفوظة
+      </footer>
+    </main>
   );
 }

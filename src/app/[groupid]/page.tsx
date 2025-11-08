@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 async function getGroupData(groupid: string) {
-  const res = await fetch("https://sheetdb.io/api/v1/b1trlzrz5n1uu", {
+  const res = await fetch("https://api.sheetbest.com/sheets/10e0e8f8-07b3-4ae7-b784-feddebba1e53", {
     cache: "no-store",
   });
   const data = await res.json();
